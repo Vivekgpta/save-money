@@ -275,88 +275,219 @@
 
 
 
-import React, { useState, useEffect } from "react";
+// import React, { useState, useEffect } from "react";
+// import { useNavigate } from "react-router-dom";
+// import {
+//   FaUtensils,
+//   FaShoppingCart,
+//   FaCar,
+//   FaMoneyBillWave,
+//   FaGift,
+//   FaTrash,
+// } from "react-icons/fa";
+
+// const iconOptions = [
+//   { name: "Food", icon: <FaUtensils /> },
+//   { name: "Shopping", icon: <FaShoppingCart /> },
+//   { name: "Travel", icon: <FaCar /> },
+//   { name: "Salary", icon: <FaMoneyBillWave /> },
+//   { name: "Gift", icon: <FaGift /> },
+// ];
+
+// function Categories() {
+//   const navigate = useNavigate();
+
+//   const [categories, setCategories] = useState(() => {
+//     const saved = localStorage.getItem("categories");
+//     return saved ? JSON.parse(saved) : [];
+//   });
+
+//   const [name, setName] = useState("");
+//   const [type, setType] = useState("expense");
+//   const [selectedIcon, setSelectedIcon] = useState(iconOptions[0]);
+
+//   // save to localStorage whenever change
+//   useEffect(() => {
+//     localStorage.setItem("categories", JSON.stringify(categories));
+//   }, [categories]);
+
+//   const addCategory = () => {
+//     if (!name.trim()) return alert("Enter category name");
+
+//     const newCategory = {
+//       id: Date.now(),
+//       name,
+//       type,
+//       icon: selectedIcon.name,
+//     };
+
+//     const updated = [...categories, newCategory];
+//     setCategories(updated);
+
+//     setName("");
+
+//     // redirect to dashboard after add
+//     navigate("/dashboard");
+//   };
+
+//   const deleteCategory = (id) => {
+//     const updated = categories.filter((cat) => cat.id !== id);
+//     setCategories(updated);
+//   };
+
+//   const handleClose = () => {
+//     navigate("/dashboard");
+//   };
+
+//   const getIcon = (iconName) => {
+//     const found = iconOptions.find((i) => i.name === iconName);
+//     return found ? found.icon : null;
+//   };
+
+//   return (
+//     <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex justify-center items-start py-10 px-4">
+//       <div className="bg-white w-full max-w-2xl rounded-2xl shadow-2xl p-8 relative">
+
+//         <button
+//           onClick={handleClose}
+//           className="absolute top-4 right-4 text-gray-400 hover:text-red-500 text-xl font-bold"
+//         >
+//           ✕
+//         </button>
+
+//         <h2 className="text-2xl font-bold text-center mb-6">
+//           Manage Categories
+//         </h2>
+
+//         <input
+//           type="text"
+//           placeholder="Category name"
+//           value={name}
+//           onChange={(e) => setName(e.target.value)}
+//           className="w-full mb-4 px-4 py-2 border rounded-lg"
+//         />
+
+//         <div className="flex bg-gray-100 rounded-xl p-1 mb-4">
+//           <button
+//             onClick={() => setType("expense")}
+//             className={`w-1/2 py-2 rounded-lg ${
+//               type === "expense" ? "bg-red-500 text-white" : ""
+//             }`}
+//           >
+//             Expense
+//           </button>
+
+//           <button
+//             onClick={() => setType("income")}
+//             className={`w-1/2 py-2 rounded-lg ${
+//               type === "income" ? "bg-green-500 text-white" : ""
+//             }`}
+//           >
+//             Income
+//           </button>
+//         </div>
+
+//         <div className="mb-6">
+//           <p className="text-sm mb-2">Select Icon</p>
+
+//           <div className="flex gap-3 flex-wrap">
+//             {iconOptions.map((item, index) => (
+//               <button
+//                 key={index}
+//                 onClick={() => setSelectedIcon(item)}
+//                 className={`p-3 rounded-xl border text-xl ${
+//                   selectedIcon.name === item.name
+//                     ? "bg-indigo-500 text-white"
+//                     : "bg-gray-100"
+//                 }`}
+//               >
+//                 {item.icon}
+//               </button>
+//             ))}
+//           </div>
+//         </div>
+
+//         <button
+//           onClick={addCategory}
+//           className="w-full bg-indigo-500 text-white py-2 rounded-lg"
+//         >
+//           Add Category
+//         </button>
+
+//         <h3 className="mt-8 mb-4 font-semibold">All Categories</h3>
+
+//         <div className="space-y-3">
+//           {categories.map((cat) => (
+//             <div
+//               key={cat.id}
+//               className="flex justify-between items-center bg-gray-50 p-3 rounded-lg"
+//             >
+//               <div className="flex items-center gap-3">
+//                 <span>{getIcon(cat.icon)}</span>
+//                 <span>{cat.name}</span>
+//                 <span className="text-xs">
+//                   ({cat.type})
+//                 </span>
+//               </div>
+
+//               <button onClick={() => deleteCategory(cat.id)}>
+//                 <FaTrash />
+//               </button>
+//             </div>
+//           ))}
+//         </div>
+
+//       </div>
+//     </div>
+//   );
+// }
+
+// export default Categories;
+
+
+
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  FaUtensils,
-  FaShoppingCart,
-  FaCar,
-  FaMoneyBillWave,
-  FaGift,
-  FaTrash,
-} from "react-icons/fa";
 
-const iconOptions = [
-  { name: "Food", icon: <FaUtensils /> },
-  { name: "Shopping", icon: <FaShoppingCart /> },
-  { name: "Travel", icon: <FaCar /> },
-  { name: "Salary", icon: <FaMoneyBillWave /> },
-  { name: "Gift", icon: <FaGift /> },
-];
-
-function Categories() {
+function AddCategory() {
   const navigate = useNavigate();
-
-  const [categories, setCategories] = useState(() => {
-    const saved = localStorage.getItem("categories");
-    return saved ? JSON.parse(saved) : [];
-  });
 
   const [name, setName] = useState("");
   const [type, setType] = useState("expense");
-  const [selectedIcon, setSelectedIcon] = useState(iconOptions[0]);
 
-  // save to localStorage whenever change
-  useEffect(() => {
-    localStorage.setItem("categories", JSON.stringify(categories));
-  }, [categories]);
-
-  const addCategory = () => {
-    if (!name.trim()) return alert("Enter category name");
+  const handleSubmit = () => {
+    if (!name.trim()) {
+      alert("Enter category name");
+      return;
+    }
 
     const newCategory = {
       id: Date.now(),
       name,
       type,
-      icon: selectedIcon.name,
     };
 
-    const updated = [...categories, newCategory];
-    setCategories(updated);
+    // get old categories
+    const saved = JSON.parse(localStorage.getItem("categories")) || [];
 
+    // add new
+    const updated = [...saved, newCategory];
+
+    // save
+    localStorage.setItem("categories", JSON.stringify(updated));
+
+    // reset + redirect
     setName("");
-
-    // redirect to dashboard after add
     navigate("/dashboard");
-  };
-
-  const deleteCategory = (id) => {
-    const updated = categories.filter((cat) => cat.id !== id);
-    setCategories(updated);
-  };
-
-  const handleClose = () => {
-    navigate("/dashboard");
-  };
-
-  const getIcon = (iconName) => {
-    const found = iconOptions.find((i) => i.name === iconName);
-    return found ? found.icon : null;
+    window.location.reload();
   };
 
   return (
-    <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex justify-center items-start py-10 px-4">
-      <div className="bg-white w-full max-w-2xl rounded-2xl shadow-2xl p-8 relative">
+    <div className="flex items-center justify-center min-h-screen bg-gray-100 px-4">
+      <div className="bg-white w-full max-w-md p-6 rounded-xl shadow-lg">
 
-        <button
-          onClick={handleClose}
-          className="absolute top-4 right-4 text-gray-400 hover:text-red-500 text-xl font-bold"
-        >
-          ✕
-        </button>
-
-        <h2 className="text-2xl font-bold text-center mb-6">
-          Manage Categories
+        <h2 className="text-xl font-bold mb-4 text-center">
+          Add Category
         </h2>
 
         <input
@@ -367,11 +498,11 @@ function Categories() {
           className="w-full mb-4 px-4 py-2 border rounded-lg"
         />
 
-        <div className="flex bg-gray-100 rounded-xl p-1 mb-4">
+        <div className="flex gap-3 mb-4">
           <button
             onClick={() => setType("expense")}
-            className={`w-1/2 py-2 rounded-lg ${
-              type === "expense" ? "bg-red-500 text-white" : ""
+            className={`w-full py-2 rounded ${
+              type === "expense" ? "bg-red-500 text-white" : "bg-gray-200"
             }`}
           >
             Expense
@@ -379,70 +510,24 @@ function Categories() {
 
           <button
             onClick={() => setType("income")}
-            className={`w-1/2 py-2 rounded-lg ${
-              type === "income" ? "bg-green-500 text-white" : ""
+            className={`w-full py-2 rounded ${
+              type === "income" ? "bg-green-500 text-white" : "bg-gray-200"
             }`}
           >
             Income
           </button>
         </div>
 
-        <div className="mb-6">
-          <p className="text-sm mb-2">Select Icon</p>
-
-          <div className="flex gap-3 flex-wrap">
-            {iconOptions.map((item, index) => (
-              <button
-                key={index}
-                onClick={() => setSelectedIcon(item)}
-                className={`p-3 rounded-xl border text-xl ${
-                  selectedIcon.name === item.name
-                    ? "bg-indigo-500 text-white"
-                    : "bg-gray-100"
-                }`}
-              >
-                {item.icon}
-              </button>
-            ))}
-          </div>
-        </div>
-
         <button
-          onClick={addCategory}
+          onClick={handleSubmit}
           className="w-full bg-indigo-500 text-white py-2 rounded-lg"
         >
           Add Category
         </button>
-
-        <h3 className="mt-8 mb-4 font-semibold">All Categories</h3>
-
-        <div className="space-y-3">
-          {categories.map((cat) => (
-            <div
-              key={cat.id}
-              className="flex justify-between items-center bg-gray-50 p-3 rounded-lg"
-            >
-              <div className="flex items-center gap-3">
-                <span>{getIcon(cat.icon)}</span>
-                <span>{cat.name}</span>
-                <span className="text-xs">
-                  ({cat.type})
-                </span>
-              </div>
-
-              <button onClick={() => deleteCategory(cat.id)}>
-                <FaTrash />
-              </button>
-            </div>
-          ))}
-        </div>
 
       </div>
     </div>
   );
 }
 
-export default Categories;
-
-
-
+export default AddCategory;
