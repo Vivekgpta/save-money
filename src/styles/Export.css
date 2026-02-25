@@ -1,0 +1,109 @@
+Overlay Background
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Modal Box */
+.modal {
+  background: #ffffff;
+  width: 500px;
+  max-width: 95%;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+.modal h2 {
+  margin-bottom: 20px;
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+}
+
+/* Toggle Buttons (Excel/PDF & Type) */
+.type-toggle {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.type-toggle button {
+  flex: 1;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  background: #f5f5f5;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+.type-toggle button:hover {
+  background: #eaeaea;
+}
+
+/* Active Button */
+.type-toggle .active {
+  background: #2f6fed;
+  color: #fff;
+  border: none;
+}
+
+/* Action Buttons */
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 25px;
+}
+
+.modal-actions button {
+  padding: 10px 18px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+/* Cancel Button */
+.modal-actions button:first-child {
+  background: #e5e7eb;
+  color: #333;
+}
+
+.modal-actions button:first-child:hover {
+  background: #d1d5db;
+}
+
+/* Export Button */
+.modal-actions button:last-child {
+  background: #2f6fed;
+  color: #fff;
+}
+
+.modal-actions button:last-child:hover {
+  background: #1d4ed8;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    transform: translateY(-10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
