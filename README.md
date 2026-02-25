@@ -2,7 +2,7 @@ AI-Assisted Personal Finance Manager
 Project Overview
 AI-Assisted Personal Finance Manager is an intelligent application that helps users track income and expenses, analyze spending patterns, manage budgets, and receive AI-powered insights to make better financial decisions.
 
-Team Members & Roles
+Team Members & Roles 
 Muskan Dwivedi – Frontend Development and UI Design
 Vivek Kumar – Backend Development
 Palak chauhan – AI/ML Integration
